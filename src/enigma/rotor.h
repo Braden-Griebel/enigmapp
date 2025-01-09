@@ -13,11 +13,19 @@
 class Rotor {
     std::array<char, 26> rotor_array_forward;
     std::array<char, 26> rotor_array_reverse;
-    int offset;
     std::unordered_set<char> notches;
+    int offset;
+
+    std::string wheel_config_from_wheel_number(int wheel_number);
+
+    std::string wheel_notches_from_wheel_number(int wheel_number);
 
 public:
-    explicit Rotor(const std::string& rotor_config, const std::string& notch_config);
+    explicit Rotor(const std::string &rotor_config, const std::string &notch_config);
+
+    explicit Rotor(const int wheel_number): Rotor(wheel_config_from_wheel_number(wheel_number),
+                                            wheel_notches_from_wheel_number(wheel_number)) {
+    };
 
     void set_offset(int offset_setting);
 

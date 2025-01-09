@@ -4,7 +4,7 @@
 
 #include "rotor.h"
 
-// Constructor
+// region constructor
 Rotor::Rotor(const std::string& wheel_config, const std::string& notch_config) {
     int idx = 0;
     for (char c : wheel_config) {
@@ -17,8 +17,9 @@ Rotor::Rotor(const std::string& wheel_config, const std::string& notch_config) {
     }
     offset = 0;
 }
+// endregion constructor
 
-
+// region main functions
 bool Rotor::advance() {
     const char prev = 'a' + offset;
     offset = (offset+1)%26;
@@ -40,3 +41,5 @@ char Rotor::translate_forward(const char char_in) const {
 char Rotor::translate_reverse(const char char_in) const {
     return 'a'+(rotor_array_reverse[(char_in - 'a' + offset)%26]-'a'+offset)%26;
 }
+// endregion main functions
+

@@ -6,21 +6,39 @@
 
 #include "rotor.h"
 
-void Rotor::advance() {
-    offset++;
+// Constructors
+Rotor::Rotor(std::string wheel_config, std::string notch_config) {
+    int idx = 0;
+    for (char c : wheel_config) {
+        rotor_array_forward[idx] = c;
+        rotor_array_reverse[c-'a'] = 'a'+idx;
+        idx++;
+    }
+    for (char c : notch_config) {
+        notches.insert(c);
+    }
+    offset = 0;
 }
 
+
+bool Rotor::advance() {
+    char prev = 'a' + offset;
+    offset = (offset+1)%26;
+    if (notches.count(prev)) {
+        return true;
+    }
+    return false;
+}
+
+void Rotor::set_offset(int offset_setting) {
+    offset = offset_setting;
+}
+
+
 char Rotor::translate_forward(const char char_in) const {
-    // Translate char_in into a position on the rotor
-    int in_pos = ((char_in - 'a') + offset)%26;
+    return 'a'+(rotor_array_forward[(char_in - 'a' + offset)%26]-'a'+offset)%26;
+}
 
-    // Translate the character through the rotor
-    char char_out_raw = rotor_array_forward[in_pos];
-
-    // Translate output character into a position,
-    // taking into account the offset
-    int out_pos = ((char_out_raw - 'a') + offset)%26;
-
-    // Translate the output position (including the offset) to a character
-    return 'a' + out_pos;
+char Rotor::translate_reverse(const char char_in) const {
+    return 'a'+(rotor_array_reverse[(char_in - 'a' + offset)%26]-'a'+offset)%26;
 }

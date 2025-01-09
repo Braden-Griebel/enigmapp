@@ -17,7 +17,7 @@ class Rotor {
     std::unordered_set<char> notches;
 
 public:
-    explicit Rotor(std::string rotor_config, std::string notch_config);
+    explicit Rotor(const std::string& rotor_config, const std::string& notch_config);
 
     void set_offset(int offset_setting);
 

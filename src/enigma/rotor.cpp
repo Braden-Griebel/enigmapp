@@ -2,12 +2,10 @@
 // Created by bgriebel on 1/8/25.
 //
 
-#include <array>
-
 #include "rotor.h"
 
-// Constructors
-Rotor::Rotor(std::string wheel_config, std::string notch_config) {
+// Constructor
+Rotor::Rotor(const std::string& wheel_config, const std::string& notch_config) {
     int idx = 0;
     for (char c : wheel_config) {
         rotor_array_forward[idx] = c;
@@ -22,7 +20,7 @@ Rotor::Rotor(std::string wheel_config, std::string notch_config) {
 
 
 bool Rotor::advance() {
-    char prev = 'a' + offset;
+    const char prev = 'a' + offset;
     offset = (offset+1)%26;
     if (notches.count(prev)) {
         return true;
@@ -30,7 +28,7 @@ bool Rotor::advance() {
     return false;
 }
 
-void Rotor::set_offset(int offset_setting) {
+void Rotor::set_offset(const int offset_setting) {
     offset = offset_setting;
 }
 

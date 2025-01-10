@@ -11,9 +11,10 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 endif()
 
 find_package(CLI11 REQUIRED)
-find_package(Catch2 REQUIRED)
 
 add_subdirectory(src)
+add_executable(enigmapp enigmapp.cpp)
+target_link_libraries(enigmapp CLI11::CLI11)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
     add_subdirectory(tests)

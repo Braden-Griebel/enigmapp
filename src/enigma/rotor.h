@@ -6,6 +6,7 @@
 #define ROTOR_H
 
 #include <array>
+#include <cctype>
 #include <string>
 #include <unordered_set>
 

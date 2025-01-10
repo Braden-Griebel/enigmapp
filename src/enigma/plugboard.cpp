@@ -32,3 +32,10 @@ char Plugboard::translate(const char input) const {
     return wires.at(idx);
 }
 
+void Plugboard::clear_wires() {
+    for (int idx=0; idx < 26; idx++) {
+        wires.at(idx) = 'a'+idx;
+    }
+}
+
+

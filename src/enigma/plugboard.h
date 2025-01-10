@@ -13,6 +13,7 @@ class Plugboard {
     void add_wire(char start, char end);
     void remove_wire(char start, char end);
     [[nodiscard]] char translate(char input) const;
+    void clear_wires();
 private:
     std::array<char, 26> wires{};
 };

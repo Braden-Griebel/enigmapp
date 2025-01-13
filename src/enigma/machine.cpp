@@ -17,9 +17,9 @@ void Machine::set_reflector(const char reflector) {
 void Machine::set_plugboard(const std::string& plugboard_configuration) {
     std::stringstream ss(plugboard_configuration);
     std::string wire_pair;
-    char delimeter = ',';
+    constexpr char delim = ',';
 
-    while (std::getline(ss, wire_pair, delimeter)) {
+    while (std::getline(ss, wire_pair, delim)) {
         if (wire_pair.length() != 3){
             throw std::invalid_argument("Invalid plugboard configuration");
         }
@@ -30,19 +30,19 @@ void Machine::set_plugboard(const std::string& plugboard_configuration) {
     }
 }
 
-std::string Machine::translate(std::string input) {
+std::string Machine::translate(const std::string& input) {
     std::string output;
     // The output length should be at most the length of the input
     output.reserve(input.length());
     for (const char& current_char: input) {
-        // Just skip all non-alphabetic characters
+        // Just skip translation for all non-alphabetic characters
         if ((current_char<='z' && current_char>='a')||
             (current_char<='Z' && current_char>='A')) {
             char translating_char = std::tolower(current_char);
             // Start with plugboard
             translating_char = this->plugboard.translate(translating_char);
             // Then step through all the rotors forward
-            for (auto rotor : this->rotors) {
+            for (const auto& rotor : this->rotors) {
                 translating_char = rotor.translate_forward(translating_char);
             }
             // Through the reflector
@@ -55,6 +55,12 @@ std::string Machine::translate(std::string input) {
             translating_char = this->plugboard.translate(translating_char);
             // Append it to the output
             output.push_back(translating_char);
+            // Now step all the rotors
+            for (auto& rotor : this->rotors) {
+                rotor.advance();
+            }
+        } else {
+            output.push_back(current_char);
         }
     }
     return output;

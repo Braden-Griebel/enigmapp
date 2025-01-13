@@ -15,6 +15,7 @@ find_package(CLI11 REQUIRED)
 add_subdirectory(src)
 add_executable(enigmapp enigmapp.cpp)
 target_link_libraries(enigmapp CLI11::CLI11)
+target_link_libraries(enigmapp enigma)
 
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME AND BUILD_TESTING)
     add_subdirectory(tests)

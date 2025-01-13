@@ -33,7 +33,7 @@ public:
 
     void set_plugboard(const std::string& plugboard_configuration);
 
-    std::string translate(std::string input);
+    std::string translate(const std::string& input);
 };
 
 

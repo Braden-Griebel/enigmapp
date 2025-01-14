@@ -36,11 +36,11 @@ void Rotor::set_offset(const int offset_setting) {
 
 
 char Rotor::translate_forward(const char char_in) const {
-    return 'a'+(rotor_array_forward[(char_in - 'a' + offset)%26]-'a'+offset)%26;
+    return 'a' + WrappedMath::subtract(rotor_array_forward[WrappedMath::add(char_in - 'a', offset, 26)] - 'a',offset,26);
 }
 
 char Rotor::translate_reverse(const char char_in) const {
-    return 'a'+(rotor_array_reverse[(char_in - 'a' + offset)%26]-'a'+offset)%26;
+    return 'a' + WrappedMath::subtract(rotor_array_reverse[WrappedMath::add(char_in - 'a', offset, 26)] - 'a',offset,26);
 }
 // endregion main functions
 

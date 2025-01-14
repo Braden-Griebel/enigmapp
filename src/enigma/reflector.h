@@ -9,6 +9,8 @@
 #include <cctype>
 #include <string>
 
+#include "math_helper.h"
+
 class Reflector {
     std::array<char, 26> reflector_array;
     int offset;

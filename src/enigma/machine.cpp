@@ -56,8 +56,13 @@ std::string Machine::translate(const std::string& input) {
             // Append it to the output
             output.push_back(translating_char);
             // Now step all the rotors
+            bool should_step = true;
             for (auto& rotor : this->rotors) {
-                rotor.advance();
+                if (should_step) {
+                    should_step = rotor.advance();
+                } else {
+                    should_step = false;
+                }
             }
         } else {
             output.push_back(current_char);

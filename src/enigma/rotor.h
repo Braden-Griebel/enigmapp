@@ -10,6 +10,8 @@
 #include <string>
 #include <unordered_set>
 
+#include "math_helper.h"
+
 
 class Rotor {
     std::array<char, 26> rotor_array_forward;
@@ -17,7 +19,7 @@ class Rotor {
     std::unordered_set<char> notches;
     int offset;
 
-    std::string wheel_config_from_wheel_number(int wheel_number);
+    static std::string wheel_config_from_wheel_number(int wheel_number);
 
     std::string wheel_notches_from_wheel_number(int wheel_number);
 
@@ -29,6 +31,8 @@ public:
     };
 
     void set_offset(int offset_setting);
+
+    int get_offset() const{return this->offset;};
 
     bool advance();
 

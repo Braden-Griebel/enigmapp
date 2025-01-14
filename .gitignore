@@ -37,3 +37,4 @@ enigmapp
 
 build/
 cmake-build-debug
+Testing/

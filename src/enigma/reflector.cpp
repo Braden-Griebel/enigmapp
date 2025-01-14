@@ -14,7 +14,13 @@ Reflector::Reflector(std::string configuration) {
 }
 
 char Reflector::translate(const char c) const {
-    return 'a'+(reflector_array[(c-'a'+offset)%26]+offset);
+    auto input_position = c-'a';
+    auto raw_output_position = WrappedMath::add(input_position, offset, 26);
+    auto raw_output = reflector_array.at(raw_output_position)-'a';
+    auto output_position = WrappedMath::subtract(raw_output, offset, 26);
+    auto output_char = 'a' +output_position;
+    return output_char;
+    //return 'a' + WrappedMath::subtract(reflector_array.at(WrappedMath::add( c-'a', offset, 26)), offset, 26);
 }
 
 std::string Reflector::reflector_config_from_char(const char reflector) {

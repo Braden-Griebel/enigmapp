@@ -1,5 +1,3 @@
-
-
 #include "math_helper.h"
 
 namespace WrappedMath {

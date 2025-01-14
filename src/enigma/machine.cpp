@@ -15,6 +15,10 @@ void Machine::set_reflector(const char reflector) {
 }
 
 void Machine::set_plugboard(const std::string& plugboard_configuration) {
+    // First clear the old configuration
+    this->plugboard.clear_wires();
+
+    // Create a stream from the configuration to make splitting the text easier
     std::stringstream ss(plugboard_configuration);
     std::string wire_pair;
     constexpr char delim = ',';

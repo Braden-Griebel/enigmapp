@@ -23,8 +23,8 @@ char Reflector::translate(const char c) const {
     //return 'a' + WrappedMath::subtract(reflector_array.at(WrappedMath::add( c-'a', offset, 26)), offset, 26);
 }
 
-std::string Reflector::reflector_config_from_char(const char reflector) {
-    switch (reflector) {
+std::string Reflector::reflector_config_from_char(const char reflector_choice) {
+    switch (reflector_choice) {
         case 'a':
             return "EJMZALYXVBWFCRQUONTSPIKHGD";
         case 'b':

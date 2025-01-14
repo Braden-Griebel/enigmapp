@@ -36,5 +36,5 @@ TEST_CASE("Test Long Translation", "[machine]") {
     auto decoded = test_decoder.translate(encoded);
 
     CHECK_FALSE(to_encode == encoded);
-    CHECK(to_encode==encoded);
+    CHECK(to_encode==decoded);
 }

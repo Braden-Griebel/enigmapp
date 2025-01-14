@@ -1,0 +1,19 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.2
+      - name: Build
+        uses: threeal/cmake-action@v2.1.0
+      - name: Test
+        uses: threeal/ctest-action@v1.1.0

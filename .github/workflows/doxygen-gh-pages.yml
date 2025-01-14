@@ -3,7 +3,7 @@ name: Doxygen GitHub Pages Deploy
 on:
   push:
     branches:
-      - main
+      - asdf
 jobs:
   deploy:
     runs-on: ubuntu-latest

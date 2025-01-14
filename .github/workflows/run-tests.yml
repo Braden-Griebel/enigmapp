@@ -22,6 +22,10 @@ jobs:
         run: |
           conan install .
       - name: Build
-        uses: threeal/cmake-action@v2.1.0
+        run: |
+          cmake -S . -B build -DBUILD_TESTS=ON
+          cmake --build build
       - name: Test
-        uses: threeal/ctest-action@v1.1.0
+        run: |
+          cd build
+          ctest

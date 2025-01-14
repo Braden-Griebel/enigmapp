@@ -10,6 +10,14 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Install conan
+        run: pipx install conan
+      - name: Conan Profile
+        run: |
+          conan profile detect --force
+      - name: Install Packages with Conan
+        run: |
+          conan install .
       - uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN}}

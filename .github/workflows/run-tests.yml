@@ -11,9 +11,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     steps:
-      - name: Install Dependencies
-        run: |
-          sudo apt install build-essential
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Install conan
@@ -26,7 +23,7 @@ jobs:
           conan install .
       - name: Build
         run: |
-          cmake -S . -B build -DBUILD_TESTS=ON -DCMAKE_TOOLCHAIN_FILE=conan_provider.cmake -DCMAKE_BUILD_TYPE=Debug
+          cmake -S . -B build -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Debug
           cmake --build build
       - name: Test
         run: |

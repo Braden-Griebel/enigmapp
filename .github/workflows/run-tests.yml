@@ -23,7 +23,7 @@ jobs:
           conan install .
       - name: Build
         run: |
-          cmake -S . -B build -DBUILD_TESTS=ON
+          cmake -S . -B build -DBUILD_TESTS=ON -DCMAKE_TOOLCHAIN_FILE=conan_toolchain.cmake -DCMAKE_BUILD_TYPE=Debug
           cmake --build build
       - name: Test
         run: |
